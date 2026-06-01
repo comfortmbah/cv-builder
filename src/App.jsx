@@ -9,6 +9,16 @@ function App() {
   const [generalInfo, setGeneralInfo] = useState({ name: '', email: '', phone: '' });
   const [education, setEducation] = useState({ school: '', study: '', date: '' });
   const [experience, setExperience] = useState({ company: '', position: '', responsibilities: '', from: '', until: '' });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsSubmitted(true);
+  }
+
+  function handleEdit() {
+    setIsSubmitted(false);
+  }
   
   return (
     <div className=" min-h-screen bg-gray-100 p-6">
