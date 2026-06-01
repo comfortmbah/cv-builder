@@ -1,4 +1,4 @@
-export function Education({ education, setEducation }) {
+export default function Education({ education, setEducation }) {
 
     function handleChange(e) {
         setEducation((prev) => ({...prev, [e.target.name]: e.target.value}));

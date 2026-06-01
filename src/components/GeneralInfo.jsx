@@ -1,4 +1,4 @@
-export function GeneralInfo({ generalInfo, setGeneralInfo }) {
+export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
     function handleChange(e) {
         setGeneralInfo(prev => ({...prev, [e.target.name]: e.target.value}))

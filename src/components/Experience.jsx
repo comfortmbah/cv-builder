@@ -1,4 +1,4 @@
-export function Experience({ experience, setExperience }) {
+export default function Experience({ experience, setExperience }) {
 
     function handleChange(e) {
         const {name, value} = e.target;

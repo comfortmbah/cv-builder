@@ -1,4 +1,4 @@
-export function CvPreview({ generalInfo, education, experience }) {
+export default function CvPreview({ generalInfo, education, experience }) {
 
     return (
         <div className="space-y-8">
