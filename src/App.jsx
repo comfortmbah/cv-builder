@@ -23,7 +23,7 @@ function App() {
   return (
     <div className=" min-h-screen bg-gray-100 p-6">
       <div className="mx-auto max-w-5xl rounded-xl bg-white p-6 shadow-lg">
-        <h1 className="mb-6 text-center text-4xl font-bold text-gray-100">CV Application</h1>
+        <h1 className="mb-6 text-center text-4xl font-bold text-gray-300">CV Application</h1>
 
         {!isSubmitted ? (
           <form action="#" onSubmit={handleSubmit} className="space-y-8">
