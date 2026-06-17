@@ -23,8 +23,10 @@ function App() {
 
     return saved ? JSON.parse(saved) : { company: '', position: '', responsibilities: '', from: '', until: '' };
   });
-  
-  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const [isSubmitted, setIsSubmitted] = useState(() => {
+    return JSON.parse(localStorage.getItem('isSubmitted')) || false;
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
