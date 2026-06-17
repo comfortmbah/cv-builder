@@ -3,6 +3,7 @@ import GeneralInfo from "./components/GeneralInfo";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import CvPreview from "./components/CvPreview";
+import { useEffect } from "react";
 
 
 function App() {
@@ -27,6 +28,16 @@ function App() {
   const [isSubmitted, setIsSubmitted] = useState(() => {
     return JSON.parse(localStorage.getItem('isSubmitted')) || false;
   });
+
+  useEffect(() => {
+    localStorage.setItem('generalInfo', JSON.stringify(generalInfo));
+
+    localStorage.setItem('education', JSON.stringify(education));
+
+    localStorage.setItem('experience', JSON.stringify(experience));
+
+    localStorage.setItem('isSubmitted', JSON.stringify(isSubmitted));
+  }, [generalInfo, education, experience, isSubmitted]);
 
   function handleSubmit(e) {
     e.preventDefault();
