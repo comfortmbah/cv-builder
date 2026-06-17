@@ -6,9 +6,24 @@ import CvPreview from "./components/CvPreview";
 
 
 function App() {
-  const [generalInfo, setGeneralInfo] = useState({ name: '', email: '', phone: '' });
-  const [education, setEducation] = useState({ school: '', study: '', date: '' });
-  const [experience, setExperience] = useState({ company: '', position: '', responsibilities: '', from: '', until: '' });
+  const [generalInfo, setGeneralInfo] = useState(() => {
+    const saved = localStorage.getItem('generalInfo');
+
+    return saved ? JSON.parse(saved) : { name: '', email: '', phone: '' };
+  });
+
+  const [education, setEducation] = useState(() => {
+    const saved = localStorage.getItem('education');
+
+    return saved ? JSON.parse(saved) : { school: '', study: '', date: '' };
+  });
+
+  const [experience, setExperience] = useState(() => {
+    const saved = localStorage.getItem('experience');
+
+    return saved ? JSON.parse(saved) : { company: '', position: '', responsibilities: '', from: '', until: '' };
+  });
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   function handleSubmit(e) {
