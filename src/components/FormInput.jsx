@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 
 const FormInput = ({ type = 'text', name, placeholder, value, onChange }) => {
   return (
-    <div>
       <input 
         type={type}
         name={name}
@@ -12,10 +11,9 @@ const FormInput = ({ type = 'text', name, placeholder, value, onChange }) => {
         className='w-full rounded-xl border border-b-gray-300 bg-white px-4 py-3 text-gray-700
           placeholder:text-gray-400 shadow-sm transition-all duration-200 outline-none focus:border-blue-500
           focus:ring-2 focus:ring-blue-200'
-      />
-    </div>
+      />  
   )
-}
+};
 
 FormInput.propTypes = {
   type: PropTypes.string,
