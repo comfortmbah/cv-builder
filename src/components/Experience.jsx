@@ -1,3 +1,9 @@
+import PropTypes from "prop-types";
+import TextareaInput from "./TextareaInput";
+import FormInput from "./FormInput";
+import SectionTitle from "./SectionTitle";
+
+
 export default function Experience({ experience, setExperience }) {
 
     function handleChange(e) {
@@ -8,56 +14,61 @@ export default function Experience({ experience, setExperience }) {
 
 
     return(
-        <section  className="rounded-lg border p-5">
-            <h2 className="mb-4 text-2xl font-semibold">Practical Experience</h2>
-            <div className="flex flex-col gap-4 md:flex-row">
+        <section  className="rounded-2xl border border-gray-200 bg-white p-6 shadow-md">
+            <SectionTitle 
+              title={'Practical Experience'}
+            />
+            <div className="flex flex-col gap-4">
 
-                <input 
-                  type="text" 
+                <FormInput  
                   name="company"
                   value={experience.company}
                   placeholder="Company Name"
                   onChange={handleChange}
-                  className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                 />
 
-                <input 
-                  type="text" 
+                <FormInput 
                   name="position"
                   value={experience.position}
                   placeholder="Position Title"
                   onChange={handleChange}
-                  className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                 />
 
-                <textarea  
+                <TextareaInput 
                   name="responsibilities"
                   value={experience.responsibilities}
                   placeholder="Main Responsibilities"
-                  rows={'4'}
                   onChange={handleChange}
-                  className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                 />
 
-                <div className="flex flex-col gap-4 md:flex-row">
+                <div className="flex flex-col gap-4">
 
-                    <input 
+                    <FormInput 
                       type="date" 
                       name="from"
                       value={experience.from}
                       onChange={handleChange}
-                      className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                     />
 
-                    <input 
+                    <FormInput 
                       type="date" 
                       name="until"
                       value={experience.until}
                       onChange={handleChange}
-                      className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                     />
                 </div>   
             </div>
         </section>
     )
 }
+
+Experience.propTypes = {
+  experience: PropTypes.shape({
+    company: PropTypes.string.isRequired,
+    position: PropTypes.string.isRequired,
+    responsibilities: PropTypes.string.isRequired,
+    from: PropTypes.string.isRequired,
+    until: PropTypes.string.isRequired,
+  }).isRequired,
+  setExperience: PropTypes.func.isRequired,
+};
