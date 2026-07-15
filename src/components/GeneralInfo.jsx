@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import FormInput from "./FormInput"
+import SectionTitle from "./SectionTitle"
 
 export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
@@ -10,7 +11,9 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
     return (
         <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-md">
-            <h2 className="mb-6 text-2xl font-bold text-gray-800">General Information</h2>
+            <SectionTitle 
+              title={'General Information'}
+            />
 
             <div className="flex flex-col gap-4">
                 <FormInput  
