@@ -1,4 +1,7 @@
-export default             function GeneralInfo({ generalInfo, setGeneralInfo }) {
+import PropTypes from "prop-types"
+import FormInput from "./FormInput"
+
+export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
 
     function handleChange(e) {
         setGeneralInfo(prev => ({...prev, [e.target.name]: e.target.value}))
@@ -6,36 +9,42 @@ export default             function GeneralInfo({ generalInfo, setGeneralInfo })
 
 
     return (
-        <section className="rounded-lg border p-5">
-            <h2 className="mb-4 text-2xl font-semibold">General Information</h2>
-            <div className="flex flex-col gap-4 md:flex-row">
-                <input 
-                  type="text" 
+        <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-md">
+            <h2 className="mb-6 text-2xl font-bold text-gray-800">General Information</h2>
+
+            <div className="flex flex-col gap-4">
+                <FormInput  
                   name="name"
                   placeholder="Full Name"
-                  className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                   value={generalInfo.name}
                   onChange={handleChange}
                 />
 
-                <input 
+                <FormInput 
                   type="email" 
                   name="email"
-                  placeholder="Email"
-                  className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
+                  placeholder="Email Address"
                   value={generalInfo.email}
                   onChange={handleChange}
                 />
 
-                <input 
+                <FormInput 
                   type="tel" 
                   name="phone"
                   placeholder="Phone Number"
-                  className="rounded-lg border p-3 outline-none focus:ring-2 focus:ring-black"
                   value={generalInfo.phone}
                   onChange={handleChange}
                 />
             </div>
         </section>
     )
-}
+};
+
+GeneralInfo.propTypes = {
+    generalInfo: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        phone: PropTypes.string.isRequired,
+    }).isRequired,
+    setGeneralInfo: PropTypes.func.isRequired,
+};
