@@ -3,42 +3,24 @@ import GeneralInfo from "./components/GeneralInfo";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import CvPreview from "./components/CvPreview";
-import { useEffect } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 
 function App() {
-  const [generalInfo, setGeneralInfo] = useState(() => {
-    const saved = localStorage.getItem('generalInfo');
+  const [generalInfo, setGeneralInfo] = useLocalStorage(
+    "generalInfo", { name: '', email: '', phone: '', }
+  );
 
-    return saved ? JSON.parse(saved) : { name: '', email: '', phone: '' };
-  });
+  const [education, setEducation] = useLocalStorage(
+    "education", { school: '', study: '', date: '', }
+  );
 
-  const [education, setEducation] = useState(() => {
-    const saved = localStorage.getItem('education');
+  const [experience, setExperience] = useLocalStorage(
+    "experience", { company: '', position: '', responsibilities: '', from: '', until: '' }
+  );  
 
-    return saved ? JSON.parse(saved) : { school: '', study: '', date: '' };
-  });
-
-  const [experience, setExperience] = useState(() => {
-    const saved = localStorage.getItem('experience');
-
-    return saved ? JSON.parse(saved) : { company: '', position: '', responsibilities: '', from: '', until: '' };
-  });
-
-  const [isSubmitted, setIsSubmitted] = useState(() => {
-    return JSON.parse(localStorage.getItem('isSubmitted')) || false;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('generalInfo', JSON.stringify(generalInfo));
-
-    localStorage.setItem('education', JSON.stringify(education));
-
-    localStorage.setItem('experience', JSON.stringify(experience));
-
-    localStorage.setItem('isSubmitted', JSON.stringify(isSubmitted));
-  }, [generalInfo, education, experience, isSubmitted]);
-
+  const [isSubmitted, setIsSubmitted] = useLocalStorage("submitted", false);
+  
   function handleSubmit(e) {
     e.preventDefault();
     setIsSubmitted(true);
