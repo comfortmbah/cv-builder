@@ -1,4 +1,4 @@
-import { useState } from "react";
+import Button from "./components/Button"
 import GeneralInfo from "./components/GeneralInfo";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
@@ -43,9 +43,10 @@ function App() {
 
             <Experience experience={experience} setExperience={setExperience} />
 
-            <button type="submit" className="w-full rounded-lg bg-black py-3 text-white transition hover:bg-gray-800">
-              Submit CV
-            </button>
+            <Button 
+              type="submit"
+              text={'Submit CV'}
+            />
           </form>
         ) : (
           <div>
@@ -55,11 +56,13 @@ function App() {
               experience={experience}
             />
 
-            <button 
-              onClick={handleEdit} 
-              className="mt-6 w-full rounded-lg bg-blue-600 py-3 text-white transition hover:bg-blue-700">
-              Edit CV
-            </button>
+            <div className="mt-6"> 
+              <Button 
+                text={'Edit CV'}
+                onClick={handleEdit}
+                variant="secondary"
+              />
+            </div>
           </div>
         )}
       </div>
