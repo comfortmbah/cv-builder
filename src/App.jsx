@@ -4,6 +4,8 @@ import Education from "./components/Education";
 import Experience from "./components/Experience";
 import CvPreview from "./components/CvPreview";
 import useLocalStorage from "./hooks/useLocalStorage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -29,42 +31,63 @@ function App() {
   function handleEdit() {
     setIsSubmitted(false);
   }
+
+  function handleClear() {
+    const confirmed = window.confirm("Are you sure you want to clear your CV?");
+    if (!confirmed) return;
+
+    setGeneralInfo({ name: '', email: '', phone: '', });
+    setEducation({ school: '', study: '', date: '', });
+    setExperience({ company: '', position: '', responsibilities: '', from: '', until: '' });
+
+    setIsSubmitted(false);
+  }
   
   return (
-    <div className=" min-h-screen bg-gray-100 p-6">
-      <div className="mx-auto max-w-5xl rounded-xl bg-white p-6 shadow-lg">
-        <h1 className="mb-6 text-center text-4xl font-bold text-gray-300">CV Application</h1>
+    <div className=" min-h-screen bg-slate-100 py-10">
+      <div className="mx-auto max-w-7xl px-5">
+        <Header />
 
-        {!isSubmitted ? (
-          <form action="#" onSubmit={handleSubmit} className="space-y-8">
-            <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
-
-            <Education education={education} setEducation={setEducation} />
-
-            <Experience experience={experience} setExperience={setExperience} />
-
-            <Button 
-              type="submit"
-              text={'Submit CV'}
-            />
-          </form>
-        ) : (
+        <div className="mt-8 grid gap-8 lg:grid-cols-2">
           <div>
-            <CvPreview 
-              generalInfo={generalInfo}
-              education={education}
-              experience={experience}
-            />
+            {!isSubmitted ? (
+              <form action="#" onSubmit={handleSubmit} className="space-y-8">
+                <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
 
-            <div className="mt-6"> 
+                <Education education={education} setEducation={setEducation} />
+
+                <Experience experience={experience} setExperience={setExperience} />
+
+                <div className="flex flex-col gap-4 sm:flex-row">
+                  <Button 
+                    type="submit"
+                    text={'Submit CV'}
+                  />
+
+                  <Button 
+                    text={'Clear CV'}
+                    onClick={handleClear}
+                    variant="danger"
+                  />
+                </div>
+              </form>
+            ) : (
               <Button 
                 text={'Edit CV'}
                 onClick={handleEdit}
                 variant="secondary"
               />
-            </div>
+            )}
           </div>
-        )}
+
+          <CvPreview 
+            generalInfo={generalInfo}
+            education={education}
+            experience={experience}
+          />
+        </div>
+
+        <Footer />
       </div>
     </div>
   );
