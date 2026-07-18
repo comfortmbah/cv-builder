@@ -66,6 +66,10 @@ function App() {
 
     setIsSubmitted(false);
   }
+
+  function handlePrint() {
+    window.print();
+  }
   
   return (
     <div className=" min-h-screen bg-slate-100 py-10">
@@ -76,7 +80,7 @@ function App() {
           <div>
             {!isSubmitted ? (
               <form action="#" onSubmit={handleSubmit} className="space-y-8">
-                <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} errors={errors} />
+                <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} errors={errors} setErrors={setErrors}/>
 
                 <Education education={education} setEducation={setEducation} />
 
@@ -96,11 +100,18 @@ function App() {
                 </div>
               </form>
             ) : (
-              <Button 
-                text={'Edit CV'}
-                onClick={handleEdit}
-                variant="secondary"
-              />
+              <div className="mt-6 flex flex-col gap-4 sm:grow print:hidden">
+                <Button 
+                  text={'Edit CV'}
+                  onClick={handleEdit}
+                  variant="secondary"
+                />
+
+                <Button 
+                  text={'Print CV'}
+                  onClick={handlePrint}
+                />
+              </div>
             )}
           </div>
 

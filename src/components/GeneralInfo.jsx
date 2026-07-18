@@ -2,10 +2,16 @@ import PropTypes from "prop-types"
 import FormInput from "./FormInput"
 import SectionTitle from "./SectionTitle"
 
-export default function GeneralInfo({ generalInfo, setGeneralInfo, errors }) {
+export default function GeneralInfo({ generalInfo, setGeneralInfo, errors, setErrors }) {
 
     function handleChange(e) {
-        setGeneralInfo(prev => ({...prev, [e.target.name]: e.target.value}))
+        const { name, value } = e.target;
+        setGeneralInfo(prev => ({...prev, [name]: value}));
+
+        if (errors[name]) {
+            setErrors((prev) => ({ ...prev, [name] : "" }));
+        }
+        
     }
 
 
@@ -53,4 +59,10 @@ GeneralInfo.propTypes = {
         phone: PropTypes.string.isRequired,
     }).isRequired,
     setGeneralInfo: PropTypes.func.isRequired,
+    errors: PropTypes.shape({
+        name: PropTypes.string,
+        email: PropTypes.string,
+        phone: PropTypes.string,
+    }).isRequired,
+    setErrors: PropTypes.func.isRequired,
 };

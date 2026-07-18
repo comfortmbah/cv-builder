@@ -2,7 +2,7 @@
 
 const Footer = () => {
   return (
-    <footer className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
+    <footer className="mt-10 border-t border-gray-200 pt-6 text-center text-sm text-gray-500 print:hidden">
         {new Date().getFullYear()} CV Builder. Built with React & Tailwind CSS.
     </footer>
   )
