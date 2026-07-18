@@ -6,6 +6,7 @@ import CvPreview from "./components/CvPreview";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { useState } from "react";
 
 
 function App() {
@@ -22,9 +23,32 @@ function App() {
   );  
 
   const [isSubmitted, setIsSubmitted] = useLocalStorage("submitted", false);
+
+  const [errors, setErrors] = useState({});
   
   function handleSubmit(e) {
     e.preventDefault();
+
+    const newErrors = {};
+
+    if (!generalInfo.name.trim()) {
+      newErrors.name = "Full name is required.";
+    }
+
+    if (!generalInfo.email.trim()) {
+      newErrors.email = "Email is required."
+    }
+
+    if (!generalInfo.phone.trim()) {
+      newErrors.phone = "Phone number is required."
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
     setIsSubmitted(true);
   }
 
@@ -52,7 +76,7 @@ function App() {
           <div>
             {!isSubmitted ? (
               <form action="#" onSubmit={handleSubmit} className="space-y-8">
-                <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} />
+                <GeneralInfo generalInfo={generalInfo} setGeneralInfo={setGeneralInfo} errors={errors} />
 
                 <Education education={education} setEducation={setEducation} />
 

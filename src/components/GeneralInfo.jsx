@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import FormInput from "./FormInput"
 import SectionTitle from "./SectionTitle"
 
-export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
+export default function GeneralInfo({ generalInfo, setGeneralInfo, errors }) {
 
     function handleChange(e) {
         setGeneralInfo(prev => ({...prev, [e.target.name]: e.target.value}))
@@ -21,6 +21,7 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
                   placeholder="Full Name"
                   value={generalInfo.name}
                   onChange={handleChange}
+                  error = {errors.name}
                 />
 
                 <FormInput 
@@ -29,6 +30,7 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
                   placeholder="Email Address"
                   value={generalInfo.email}
                   onChange={handleChange}
+                  error ={errors.email}
                 />
 
                 <FormInput 
@@ -37,6 +39,7 @@ export default function GeneralInfo({ generalInfo, setGeneralInfo }) {
                   placeholder="Phone Number"
                   value={generalInfo.phone}
                   onChange={handleChange}
+                  error ={errors.phone}
                 />
             </div>
         </section>
